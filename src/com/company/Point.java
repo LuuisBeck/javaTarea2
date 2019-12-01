@@ -19,4 +19,8 @@ public class Point {
         this.father = newFather;
         this.id = newFather.id;
     }
+
+    public void setID(String newID) {
+        this.id = newID;
+    }
 }

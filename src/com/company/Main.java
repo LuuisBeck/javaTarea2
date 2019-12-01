@@ -1,11 +1,10 @@
 package com.company;
 
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.HashMap;
 
 public class Main {
 
@@ -32,9 +31,31 @@ public class Main {
             for (Point p : points) {
                 System.out.println("ID punto: " + p.id);
             }
-            /* No se deben mostrar todos los padres de todos los puntos
-            porque solo busco el mínimo de aristas. Y solo muestro esas aristas
-             */
+
+            // Asignamos números a cada raiz para mostrarlo en archivo de texto
+            // (solo admite de 0 hasta k-1)
+            int init = 0;
+            HashMap<String, Integer> mapConexas = new HashMap<>();
+            for (Point p : points) {
+                if (!mapConexas.containsKey(p.id)) {
+                    mapConexas.put(p.id, init);
+                    p.setID(Integer.toString(init));
+                    init++;
+                } else {
+                    p.setID(Integer.toString(mapConexas.get(p.id)));
+                }
+
+            }
+
+
+            //Archivo a exportar
+            File newfile = new File("./k_clustering.txt");
+            newfile.createNewFile();
+            PrintStream writer = new PrintStream(newfile);
+            for (Point p : points) {
+                writer.println(p.x + " " + p.y + " " + p.id);
+            }
+            writer.close();
 
         } catch (IOException e) {
             e.printStackTrace();
@@ -83,7 +104,6 @@ public class Main {
 
     public static int cantComponentesConexas(ArrayList<Point> points){
         ArrayList<Point> raices = new ArrayList<>();
-
         for (Point p : points) {
             Point raiz = UnionFind.find(p);
             if (!raices.contains(raiz)) {
