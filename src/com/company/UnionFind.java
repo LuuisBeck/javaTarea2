@@ -14,7 +14,9 @@ public class UnionFind {
         if (p.father.equals(p)) {
             return p;
         } else {
-            return p.father = find(p.father);
+            Point newFather = find(p.father);
+            p.id = newFather.id;
+            return p.father = newFather;
         }
     }
 

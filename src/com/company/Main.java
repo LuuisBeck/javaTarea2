@@ -14,6 +14,9 @@ public class Main {
         System.out.println("Ingrese cantidad de puntos a usar");
         try {
             String amount = br.readLine();
+            System.out.println("Ingrese cantidad de grupos a dividir");
+            String k_input = br.readLine();
+            int kComponents = Integer.parseInt(k_input);
             ArrayList<Point> points = generatePoints(Integer.parseInt(amount));
             ArrayList<Edge> edges = generateSortedEdges(points);
             for (Point a : points) {
@@ -23,7 +26,7 @@ public class Main {
             for (Edge e : edges) {
                 System.out.println("Arista: Distancia=" + e.distance + ", ID=" + e.first.id + " - " + e.second.id);
             }
-            Kruskal.minimumSpanningTree(points, edges);
+            Kruskal.minimumSpanningTree(points, edges, kComponents);
             int value = cantComponentesConexas(points);
             System.out.println(value);
             for (Point p : points) {
