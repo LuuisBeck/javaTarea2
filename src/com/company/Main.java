@@ -25,7 +25,10 @@ public class Main {
             for (Edge e : edges) {
                 System.out.println("Arista: Distancia=" + e.distance + ", ID=" + e.first.id + " - " + e.second.id);
             }
+
+            long startTime = System.nanoTime();
             Kruskal.minimumSpanningTree(points, edges, kComponents);
+            long endTime = System.nanoTime();
             int value = cantComponentesConexas(points);
             System.out.println(value);
             for (Point p : points) {
@@ -56,7 +59,8 @@ public class Main {
                 writer.println(p.x + " " + p.y + " " + p.id);
             }
             writer.close();
-
+            System.out.println("Tiempo de ejecución: " + ((endTime - startTime) / 1000000000.0) + " segundos");
+ 
         } catch (IOException e) {
             e.printStackTrace();
         }
