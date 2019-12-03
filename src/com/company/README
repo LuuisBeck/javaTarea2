@@ -1,0 +1,7 @@
+Para la ejecución de la subtarea 1:
+- Correr Main.java y otorgar argumentos a usar (cantidad de puntos y cantidad de grupos a separar)
+- Visualizar el resultado ejecutando: python3 clusterVis.py k_clustering.txt
+
+Para la ejecución de la subtarea 3:
+- Correr el main de RouterDesign.java, luego en el output aparecerán los tiempos de ejecución para cada tipo
+de algoritmo con su optimización asociada.

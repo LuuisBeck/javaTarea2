@@ -41,11 +41,25 @@ public class RouteDesign {
         }
 
         ArrayList<Edge> sortedEdges = Main.sortEdges(edges);
-        System.out.println("Aristas: " + sortedEdges.size());
-        System.out.println("Puntos: " + points.size());
-        long startTime = System.nanoTime();
-        Kruskal.minimumSpanningTree(points, sortedEdges, 1);
+
+        /*long startTime = System.nanoTime();
+        Kruskal.minimumSpanningTreeNOUnionNOCompression(points, sortedEdges, 1);
         long endTime = System.nanoTime();
-        System.out.println("Tiempo de ejecución: " + ((endTime - startTime) / 1000000000.0) + " segundos");
+        System.out.println("Tiempo de ejecución, NO Compresion - NO Union: " + ((endTime - startTime) / 1000000000.0) + " segundos");
+
+        long startTime1 = System.nanoTime();
+        Kruskal.minimumSpanningTreeNOUnion(points, sortedEdges, 1);
+        long endTime1 = System.nanoTime();
+        System.out.println("Tiempo de ejecución, SI Compresion - NO Union: " + ((endTime1 - startTime1) / 1000000000.0) + " segundos");
+
+        long startTime2 = System.nanoTime();
+        Kruskal.minimumSpanningTree(points, sortedEdges, 1);
+        long endTime2 = System.nanoTime();
+        System.out.println("Tiempo de ejecución, SI Compresion - SI Union: " + ((endTime2 - startTime2) / 1000000000.0) + " segundos");
+*/
+        long startTime3 = System.nanoTime();
+        Kruskal.minimumSpanningTreeNOCompression(points, sortedEdges, 1);
+        long endTime3 = System.nanoTime();
+        System.out.println("Tiempo de ejecución, NO Compresion - SI Union: " + ((endTime3 - startTime3) / 1000000000.0) + " segundos");
     }
 }

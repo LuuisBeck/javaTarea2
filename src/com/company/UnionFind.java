@@ -20,9 +20,23 @@ public class UnionFind {
         }
     }
 
+    private Point findNO(Point p) { //without path compression
+        if (p.father.equals(p)) {
+            return p;
+        } else {
+            return findNO(p.father);
+        }
+    }
+
     public boolean areInSameComponent(Point x, Point y) {
         Point rootX = find(x);
         Point rootY = find(y);
+        return rootX.equals(rootY);
+    }
+
+    public boolean areInSameComponentNOcompression(Point x, Point y) {
+        Point rootX = findNO(x);
+        Point rootY = findNO(y);
         return rootX.equals(rootY);
     }
 
@@ -38,6 +52,31 @@ public class UnionFind {
                 rootB.altura++;
             }
         }
+    }
+
+    public void connectNOcompresion(Point a, Point b) {
+        Point rootA = findNO(a);
+        Point rootB = findNO(b);
+        if (rootA.altura > rootB.altura) {
+            rootB.setFather(rootA);
+        } else {
+            rootA.setFather(rootB);
+            if (rootA.altura == rootB.altura) {
+                rootB.altura++;
+            }
+        }
+    }
+
+    public void connectNOcompressionNOunion(Point a, Point b) {
+        Point rootA = findNO(a);
+        Point rootB = findNO(b);
+        rootA.setFather(rootB);
+    }
+
+    public void connectNOunion(Point a, Point b) {
+        Point rootA = find(a);
+        Point rootB = find(b);
+        rootA.setFather(rootB);
     }
 
     /* Mejoras
