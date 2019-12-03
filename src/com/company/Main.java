@@ -96,13 +96,16 @@ public class Main {
 
         //Ordenar aristas
         //quickSort(resultEdges, 0, n-1);
+        return sortEdges(resultEdges);
+    }
+
+    public static ArrayList<Edge> sortEdges(ArrayList<Edge> resultEdges) {
         Collections.sort(resultEdges, new Comparator<Edge>() {
             @Override
             public int compare(Edge o1, Edge o2) {
                 return Double.compare(o1.distance, o2.distance);
             }
         });
-
         return resultEdges;
     }
 
